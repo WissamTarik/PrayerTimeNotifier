@@ -1,0 +1,31 @@
+.prayer-times{
+    .prayer{
+        padding: 20px;
+        background-color: antiquewhite;
+        border-top: 2px dashed #bbb;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+         
+        div:first-child i{
+            margin-right: 10px;
+            color: gray;
+        }
+        div:last-child i{
+            margin-right: 10px;
+            color: rgb(235, 158, 15);
+        }
+        div i.active {
+            color: rgb(240, 72, 72);
+        }
+        span{
+            font-weight: bold;
+        }
+        span.active{
+            color: rgb(235, 158, 15);
+        }
+       
+    }
+
+}
