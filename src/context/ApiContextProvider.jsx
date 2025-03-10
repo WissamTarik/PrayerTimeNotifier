@@ -33,68 +33,54 @@ export default function ApiContextProvider({children}) {
     function checkNextAndCurrentPrayer(prayers){
    
 
-        //  if(prayers.length>0){
-        //      if(currentDate.isAfter(moment(prayers[0]?.Fajr,'hh:mm')) && currentDate.isBefore(moment(prayers[0]?.Sunrise,'hh:mm'))){
-        //        console.log('Between fajr and dhuhr');
-        //         setCurrentPrayer('Sunrise')
-        //         setNextPrayer("Duhur")
-        //         setCurrentPrayerEnd(prayers[0].Dhuhr)
-        //         setNextPrayerEnd(prayers[0].Asr)
-        //      }
-        //      else if(currentDate.isAfter(moment(prayers[0]?.Sunrise,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Dhuhr,"hh:mm"))){
-        //        console.log('Between Fajr and Duhur');
-        //        setCurrentPrayer('Sunrise')
-        //        setCurrentPrayerEnd(prayers[0].Dhuhr)
+         if(prayers.length>0){
+             if(currentDate.isAfter(moment(prayers[0]?.Fajr,'hh:mm')) && currentDate.isBefore(moment(prayers[0]?.Sunrise,'hh:mm'))){
+               console.log('Between fajr and dhuhr');
+                setCurrentPrayer('Sunrise')
+                setNextPrayer("Duhur")
+                setCurrentPrayerEnd(prayers[0].Dhuhr)
+                setNextPrayerEnd(prayers[0].Asr)
+             }
+             else if(currentDate.isAfter(moment(prayers[0]?.Sunrise,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Dhuhr,"hh:mm"))){
+               console.log('Between Fajr and Duhur');
+               setCurrentPrayer('Sunrise')
+               setCurrentPrayerEnd(prayers[0].Dhuhr)
 
-        //        setNextPrayer("Dhuhr")
-        //        setCurrentPrayerEnd(prayers[0].Dhuhr)
-        //        setNextPrayerEnd(prayers[0].Asr)
-        //      }
-        //      else if(currentDate.isAfter(moment(prayers[0]?.Dhuhr,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Asr,"hh:mm"))){
-        //        console.log('Between Dhuhr and Asr');
-        //        setCurrentPrayer('Dhuhr')
-        //        setCurrentPrayerEnd(prayers[0].Asr)
+               setNextPrayer("Dhuhr")
+               setCurrentPrayerEnd(prayers[0].Dhuhr)
+               setNextPrayerEnd(prayers[0].Asr)
+             }
+             else if(currentDate.isAfter(moment(prayers[0]?.Dhuhr,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Asr,"hh:mm"))){
+               console.log('Between Dhuhr and Asr');
+               setCurrentPrayer('Dhuhr')
+               setCurrentPrayerEnd(prayers[0].Asr)
 
-        //        setNextPrayer("Asr")
-        //        setCurrentPrayerEnd(prayers[0].Asr)
-        //        setNextPrayerEnd(prayers[0].Maghrib)
-        //      }
-        //      else if(currentDate.isAfter(moment(prayers[0]?.Asr,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Maghrib,"hh:mm"))){
-        //        console.log('Between Asr and Maghrib');
-        //        setCurrentPrayer('Asr')
-        //        setNextPrayer("Maghrib")
-        //        setCurrentPrayerEnd(prayers[0].Maghrib)
-        //        setNextPrayerEnd(prayers[0].Isha)
-        //      }
-        //      else if(currentDate.isAfter(moment(prayers[0]?.Maghrib,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Isha,"hh:mm"))){
-        //        console.log('Between Maghrib and Isha');
-        //        setCurrentPrayer('Maghrib')
-        //        setNextPrayer("Isha")
-        //        setCurrentPrayerEnd(prayers[0].Isha)
-        //        setNextPrayerEnd(prayers[0].Fajr)
-        //      }
-        //      else{
-        //        setCurrentPrayer('Isha')
-        //        setNextPrayer('Fajr')
-        //        setCurrentPrayerEnd(prayers[0].Fajr)
-        //        setNextPrayerEnd(prayers[0].Dhuhr)
-        //      }
-        //     }
-        const prayerNames = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
-  let now = moment();
-
-  for (let i = 0; i < prayerNames.length; i++) {
-    let startTime = moment(prayers[0][prayerNames[i]], 'HH:mm');
-    let endTime = moment(prayers[0][prayerNames[(i + 1) % prayerNames.length]], 'HH:mm');
-
-    if (now.isAfter(startTime) && now.isBefore(endTime)) {
-      setCurrentPrayer(prayerNames[i]);
-      setNextPrayer(prayerNames[(i + 1) % prayerNames.length]);
-      setCurrentPrayerEnd(endTime.format('hh:mm A'));
-      setNextPrayerEnd(moment(prayers[0][prayerNames[(i + 2) % prayerNames.length]], 'HH:mm').format('hh:mm A'));
-      break;
-    }
-  }
+               setNextPrayer("Asr")
+               setCurrentPrayerEnd(prayers[0].Asr)
+               setNextPrayerEnd(prayers[0].Maghrib)
+             }
+             else if(currentDate.isAfter(moment(prayers[0]?.Asr,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Maghrib,"hh:mm"))){
+               console.log('Between Asr and Maghrib');
+               setCurrentPrayer('Asr')
+               setNextPrayer("Maghrib")
+               setCurrentPrayerEnd(prayers[0].Maghrib)
+               setNextPrayerEnd(prayers[0].Isha)
+             }
+             else if(currentDate.isAfter(moment(prayers[0]?.Maghrib,'hh:mm')) && currentDate.isBefore(moment(prayers[0].Isha,"hh:mm"))){
+               console.log('Between Maghrib and Isha');
+               setCurrentPrayer('Maghrib')
+               setNextPrayer("Isha")
+               setCurrentPrayerEnd(prayers[0].Isha)
+               setNextPrayerEnd(prayers[0].Fajr)
+             }
+             else{
+               setCurrentPrayer('Isha')
+               setNextPrayer('Fajr')
+               setCurrentPrayerEnd(prayers[0].Fajr)
+               setNextPrayerEnd(prayers[0].Dhuhr)
+             }
+            }
+  
           
              
     }
