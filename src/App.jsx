@@ -4,14 +4,22 @@ import './App.css'
 import Header from './Components/Header/Header'
 import Home from './Components/Home/Home'
 import ApiContextProvider from './context/ApiContextProvider'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Layout from './Components/Layout/Layout'
+import AllPrayers from './Components/AllPrayers/AllPrayers'
 
 function App() {
+  const router=createBrowserRouter([
+    {path:'',element:<Layout/>,children:[
+      {path:'',element:<Home/>},
+      {path:'/allPrayers',element:<AllPrayers/>}
+    ]}
+  ])
 
   return (
     <>
- <ApiContextProvider>
- <Header/>
- <Home/>
+<ApiContextProvider>
+<RouterProvider router={router}/>
  </ApiContextProvider>
     </>
   )

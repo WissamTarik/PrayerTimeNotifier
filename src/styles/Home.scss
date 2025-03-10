@@ -1,19 +1,14 @@
 main{
     margin-top: 50px;
-    button{
-      background-color: rgb(235, 158, 15);
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      padding: 15px 20px;
-      cursor: pointer;
-   font-weight: bold;
-       color: white;
-       transition: 0.5s background-color;
-       &:hover{
-         background-color: rgb(197, 132, 10);
-       }
+    .buttons-container{
+      display: flex;
+      flex-direction: column;
+  
+    .all-prayers-link{
+      font-weight: 500;
+      padding-block: 10px;
     }
+   }
     .top-card-container{
         display: flex;
         justify-content: center;
@@ -59,8 +54,14 @@ main{
      $arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
      $option-bg: white;
      $select-bg: rgba(255, 255, 255, 0.2);
+    
      h3{
       width: 100%;
+      margin-bottom: 0;
+      margin-block-end: 0;
+     }
+     h3.remaining-time{
+      margin-block-start: -10px;
      }
     }
       .location-icon{
@@ -103,20 +104,20 @@ main{
        .prayer-times{
          margin-bottom: 20px;
        }
+       .time-left{
+         display: none;
+        }
 }
-.loading{
-   height: 100vh;
-   position: fixed;
-   inset: 0;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: white;
- 
-}
+
 
 @media screen and (min-width:500px) {
      main {
+      .buttons-container{
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         flex-direction: row;
+      }
         .top-card-container{
         .top-card{
         width: 50%;
@@ -130,9 +131,19 @@ main{
          width: 20rem;
 
       }
-      h3{
-      width: auto;
-      }
+      
+     .time-left-small{
+      display: none;
+     }
+     }
+     .time-left{
+      display: flex;
+      background-color: antiquewhite;
+      margin-top: 10px; 
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+   }
    }
 }
-}
+

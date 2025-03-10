@@ -1,0 +1,17 @@
+.container{
+    width: 80%;
+    margin: 0 auto;
+    .all-prayers-link.back-btn{
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        font-weight: normal;
+    }
+    .prayer-times{
+        margin-bottom: 20px;
+      }
+}

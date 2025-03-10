@@ -5,12 +5,12 @@ import { apiContext } from '../../context/ApiContextProvider'
 import moment from 'moment'
 import { Hourglass } from 'react-loader-spinner'
 import Footer from '../Footer/Footer'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
   const [selectValue, setSelectValue] = useState('cairo')
-  const [prayers, setPrayers] = useState([])
   
-  const {getData,myData,isLoading,checkNextAndCurrentPrayer,nextPrayer,currentPrayer,currentPrayerEnd,nextPrayerEnd,remainingTime}=useContext(apiContext)
+  const {getData,myData,isLoading,prayers,checkNextAndCurrentPrayer,setPrayers,nextPrayer,currentPrayer,currentPrayerEnd,nextPrayerEnd,remainingTime}=useContext(apiContext)
   
   function handleSelectChange(value){
  
@@ -53,22 +53,7 @@ export default function Home() {
  
    
   }, []); 
-  useEffect(() => {
-    if(myData){
-      setPrayers([
-        {
-          Fajr: myData?.Fajr,
-          Dhuhr: myData?.Dhuhr,
-          Sunrise: myData?.Sunrise,
-          Sunset: myData?.Sunset,
-          Asr: myData?.Asr,
-          Maghrib: myData?.Maghrib,
-          Isha: myData?.Isha
-        }
-      ]);
-    }
-  
-   }, [myData])
+ 
    useEffect(() => {
      
     if (prayers.length > 0) {
@@ -110,7 +95,10 @@ export default function Home() {
     <>
     <main>
   <div className="container">
-      <button onClick={getNotification}>Allow Prayer  Notification</button>
+    <div className="buttons-container">
+    <button onClick={getNotification}>Allow   Notification</button>
+    <Link to={'/allPrayers'} className='all-prayers-link'>See prayer times</Link>
+    </div>
 
   <div className="location">
     <div className='location-icon'>
@@ -126,25 +114,23 @@ export default function Home() {
   <option selected={selectValue=='luxor'?true:false} value="luxor">Luxor</option>
   <option selected={selectValue=='fayoum'?true:false} value="fayoum">Fayoum</option>
 </select>
-<h3>Time Left to {nextPrayer} : {remainingTime}</h3>
+<div className='time-left-small'>
+<h3>Time Left to {nextPrayer} : </h3>
+<h3 className='remaining-time'>{remainingTime}</h3>
+</div>
 
     </div>
+    <div className='time-left'>
+<h3>Time Left to {nextPrayer} : </h3>
+<h3 className='remaining-time'>{remainingTime}</h3>
+</div>
   <div className='top-card-container'>
     <TopCard first={true} currentPrayer={currentPrayer}  endTime={currentPrayerEnd} />
        <TopCard first={false} nextPrayer={nextPrayer} nextPrayerTime={prayers[0]?.nextPrayer}  endTime={nextPrayerEnd} />
     </div>
-     <div className='prayer-times'>
-      {prayers.length>0 && Object.entries(prayers[0]).map(([key,value])=>{
-        if(key !=='Sunset' && key!=='Sunrise'){
-          
-          return <PrayerTimes key={key} prayerName={key} prayerTime={value}  currentPrayer={currentPrayer}/>
-        }
-       
-      })}
-     </div>
+    
   </div>
     </main>
-    <Footer sunrise={prayers[0]?.Sunrise} sunset={prayers[0]?.Sunset} />
     </>
   )
 }
