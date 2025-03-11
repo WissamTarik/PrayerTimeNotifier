@@ -77,7 +77,7 @@ export default function ApiContextProvider({children}) {
                setCurrentPrayer('Isha')
                setNextPrayer('Fajr')
                setCurrentPrayerEnd(prayers[0].Fajr)
-               setNextPrayerEnd(prayers[0].Dhuhr)
+               setNextPrayerEnd(prayers[0].Sunrise)
              }
             }
   
